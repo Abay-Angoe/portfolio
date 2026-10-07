@@ -2,26 +2,44 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Semantic design tokens. Light values on :root, dark overrides on .dark.
+   Components reference these (bg-win, text-ink, border-line, bg-accent, …) so
+   theming lives in one place. --accent and --wallpaper are user-configurable. */
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  color-scheme: light;
+  --win: #ffffff;
+  --panel: #f4f4f6;
+  --sunken: #f0f0f2;
+  --text: #1c1c1e;
+  --dim: #6b7280;
+  --faint: #9ca3af;
+  --line: rgba(0, 0, 0, 0.1);
+  --hover: rgba(0, 0, 0, 0.05);
+  --accent: #0a84ff;
+  --wallpaper: url("/wallpapers/default.png") center / cover no-repeat;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+.dark {
+  color-scheme: dark;
+  --win: #1c1c1e;
+  --panel: #2a2a2c;
+  --sunken: #161618;
+  --text: #f2f2f7;
+  --dim: #a1a1aa;
+  --faint: #71717a;
+  --line: rgba(255, 255, 255, 0.12);
+  --hover: rgba(255, 255, 255, 0.06);
+}
+
+html,
+body {
+  height: 100%;
 }
 
 body {
-  color: var(--foreground);
-  background: var(--background);
-  font-family: Arial, Helvetica, sans-serif;
-}
-
-@layer utilities {
-  .text-balance {
-    text-wrap: balance;
-  }
+  overflow: hidden;
+  /* macOS-style system UI font stack. */
+  font-family:
+    -apple-system, BlinkMacSystemFont, "SF Pro Text", "Segoe UI", "Helvetica Neue",
+    Arial, sans-serif;
 }

@@ -1,6 +1,7 @@
 import type { Config } from "tailwindcss";
 
 const config: Config = {
+  darkMode: "class",
   content: [
     "./pages/**/*.{js,ts,jsx,tsx,mdx}",
     "./components/**/*.{js,ts,jsx,tsx,mdx}",
@@ -9,8 +10,16 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
-        background: "var(--background)",
-        foreground: "var(--foreground)",
+        // Semantic design tokens (defined in globals.css). Using them means dark
+        // mode is defined once, not per-component.
+        win: "var(--win)",
+        panel: "var(--panel)",
+        sunken: "var(--sunken)",
+        line: "var(--line)",
+        ink: "var(--text)",
+        dim: "var(--dim)",
+        faint: "var(--faint)",
+        accent: "var(--accent)",
       },
     },
   },
